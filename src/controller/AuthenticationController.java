@@ -6,7 +6,6 @@
 package controller;
 
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import model.BabyFinger;
 import model.User;
 import model.IndexFinger;

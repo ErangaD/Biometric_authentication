@@ -15,6 +15,7 @@ import java.sql.Statement;
  */
 public class User {
     private static float threshold;
+    private String user_name;
     private String name;
     private String ID;
     private Thumb thumb;
@@ -148,7 +149,7 @@ public class User {
             
             stmt=con.createStatement();
             String sql = "INSERT INTO User (name,n_id)"
-                + "VALUES ("+name+","+ID+");";
+                + "VALUES ("+name+","+ID+","+user_name+");";
             stmt.executeUpdate(sql);
             ResultSet rs = stmt.executeQuery( "SELECT id FROM User where name="+name+" LIMIT 1;" );
             int id;
