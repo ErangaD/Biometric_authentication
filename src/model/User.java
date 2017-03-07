@@ -14,6 +14,7 @@ import java.sql.Statement;
  * @author Eranga
  */
 public class User {
+    private static float threshold;
     private String name;
     private String ID;
     private Thumb thumb;
@@ -38,12 +39,25 @@ public class User {
     public static boolean checkForMatch(Thumb thumb,IndexFinger index,MiddleFinger middle,
         RingFinger ring,BabyFinger baby){
         Connection con=Connect.connectDb();
+        float[] handProperties=new float[10];
+        handProperties[0]=thumb.getLength();
+        handProperties[1]=thumb.getWidth();
+        handProperties[2]=index.getLength();
+        handProperties[3]=index.getWidth();
+        handProperties[4]=middle.getLength();
+        handProperties[5]=middle.getWidth();
+        handProperties[6]=ring.getLength();
+        handProperties[7]=ring.getWidth();
+        handProperties[8]=baby.getLength();
+        handProperties[9]=baby.getWidth();
         try{
             stmt=con.createStatement();
             ResultSet rs = stmt.executeQuery( "SELECT * FROM Hand;" );
-            
+            int y=0;
             while ( rs.next() ) {
                 float[] lengthAndWidth=new float[10];
+                float[] convertedValues=new float[10];
+                float match;
                 lengthAndWidth[0]=rs.getFloat("thumb_length");
                 lengthAndWidth[1]=rs.getFloat("thumb_width");
                 lengthAndWidth[2]=rs.getFloat("index_length");
@@ -55,19 +69,48 @@ public class User {
                 lengthAndWidth[8]=rs.getFloat("baby_length");
                 lengthAndWidth[9]=rs.getFloat("baby_widths");
                 //reconvert to the actual data using cesar's method shift back by 2
-                
-                
-                
+                for(float d:lengthAndWidth){
+                    String value=String.valueOf(d);
+                    int len=value.length();
+                    String[] splitedValue=value.split("");
+                    int decimalPlace=Integer.parseInt(splitedValue[len-1]);
+                    String decipheredVal="";
+                    int decimalIndex=value.length();
+                    for(int i=0;i<len-1;i++){
+                        if(i==decimalPlace){
+                            decipheredVal+=".";
+                        }
+                        int digit=Integer.parseInt(splitedValue[i]);
+                        int newDegit=digit-i-1;
+                        decipheredVal+=newDegit;                       
+                    }
+                    
+                    match=Float.parseFloat(decipheredVal);
+                    convertedValues[y]=match;
+                    y++;
+                }
+                float cumulativeDifference=0;
+                for(float val:convertedValues){
+                    float difference=0;
+                    for(float valr:handProperties){
+                        difference=Math.abs(val-valr);
+                    }
+                    cumulativeDifference+=difference*difference;
+                }
+                if(Math.sqrt(cumulativeDifference)<threshold){
+                    return true;
+                }
             }
         }catch(Exception e){
             
         }
         
-        return true;
+        return false;
     }
     public void createUser(){
         Connection con=Connect.connectDb();
         float[] lengthAndWidth=new float[10];
+        float[] storedVal=new float[10];
         lengthAndWidth[0]=thumb.getLength();
         lengthAndWidth[1]=thumb.getWidth();
         lengthAndWidth[2]=index.getLength();
@@ -78,18 +121,27 @@ public class User {
         lengthAndWidth[7]=ring.getWidth();
         lengthAndWidth[8]=baby.getLength();
         lengthAndWidth[9]=baby.getWidth();
+        int j=0;
         for(float d:lengthAndWidth){
             String value=String.valueOf(d);
             String[] splitedValue=value.split("");
+            String cipheredChar="";
             int i=1;
+            int decimalIndex=value.length();
             for(String s:splitedValue){
                 if(s.equals('.')){
-                    
+                    decimalIndex=i-1;                   
+                    i++;
+                    continue;
                 }
                 int digit=Integer.parseInt(s);
                 int newDegit=digit+i;
+                cipheredChar+=newDegit;
                 i++;
             }
+            cipheredChar+=decimalIndex;
+            storedVal[j]=Float.parseFloat(cipheredChar);
+            j++;
         }
         
         try {
@@ -102,10 +154,10 @@ public class User {
             int id;
             while (rs.next()) {
                 id = rs.getInt("id");
-                String sql1 = "INSERT INTO Hand VALUES ("+id+","+thumb.getLength()+","+
-                        +","++","++","+
-                        +","++","++","+
-                        ring.getWidth()+","++","++");";
+                String sql1 = "INSERT INTO Hand VALUES ("+id+","+storedVal[0]+","+storedVal[1]
+                        +","+storedVal[2]+","+storedVal[3]+","+storedVal[4]
+                        +","+storedVal[5]+","+storedVal[6]+","+storedVal[7]
+                        +","+storedVal[8]+","+storedVal[9]+");";
                 stmt.executeUpdate(sql1);
             }
             rs.close();
