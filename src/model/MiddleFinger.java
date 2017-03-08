@@ -10,5 +10,9 @@ package model;
  * @author Eranga
  */
 public class MiddleFinger extends Finger  {
-    
+    public MiddleFinger(float len,float width){
+        super();
+        this.length=len;
+        this.width=width;
+    }
 }

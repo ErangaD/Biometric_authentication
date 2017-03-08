@@ -5,6 +5,14 @@
  */
 package views;
 
+import controller.AuthenticationController;
+import javax.swing.JOptionPane;
+import model.BabyFinger;
+import model.IndexFinger;
+import model.MiddleFinger;
+import model.RingFinger;
+import model.Thumb;
+
 /**
  *
  * @author Eranga
@@ -14,6 +22,16 @@ public class SignUpForm extends javax.swing.JFrame {
     /**
      * Creates new form SignUpForm
      */
+    float len_thumbf;
+    float width_thumbf;
+    float len_indexf;
+    float width_indexf;
+    float len_middlef;
+    float width_middlef;
+    float len_ringf;
+    float width_ringf;
+    float len_littlef;
+    float width_littlef;
     public SignUpForm() {
         initComponents();
     }
@@ -35,8 +53,6 @@ public class SignUpForm extends javax.swing.JFrame {
         name_text = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         id_text = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        userName_text = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -53,8 +69,9 @@ public class SignUpForm extends javax.swing.JFrame {
         middleWidth = new javax.swing.JTextField();
         littleLength = new javax.swing.JTextField();
         ringWidth = new javax.swing.JTextField();
-        LittleWidth = new javax.swing.JTextField();
+        littleWidth = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        df = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -93,19 +110,9 @@ public class SignUpForm extends javax.swing.JFrame {
         name_text.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("Id");
+        jLabel4.setText("User ID");
 
         id_text.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("User Name");
-
-        userName_text.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        userName_text.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userName_textActionPerformed(evt);
-            }
-        });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(51, 255, 51));
@@ -138,6 +145,8 @@ public class SignUpForm extends javax.swing.JFrame {
             }
         });
 
+        df.setText("jFormattedTextField1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -152,18 +161,12 @@ public class SignUpForm extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel4))
-                                        .addGap(39, 39, 39)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(name_text, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(id_text, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(userName_text, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4))
+                                .addGap(39, 39, 39)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(name_text, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(id_text, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -192,7 +195,7 @@ public class SignUpForm extends javax.swing.JFrame {
                                     .addComponent(indexWidth, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(middleWidth, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(ringWidth, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(LittleWidth, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(littleWidth, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(60, 60, 60))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(226, 226, 226)
@@ -202,8 +205,13 @@ public class SignUpForm extends javax.swing.JFrame {
                         .addGap(73, 73, 73))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
-                        .addGap(195, 195, 195))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jButton2)
+                                .addGap(195, 195, 195))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(df, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(183, 183, 183))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,11 +231,9 @@ public class SignUpForm extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(id_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(userName_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(20, 20, 20)
+                        .addComponent(df, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(jLabel9))
@@ -255,7 +261,7 @@ public class SignUpForm extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel12)
                             .addComponent(littleLength, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(LittleWidth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(littleWidth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2)
                         .addGap(52, 52, 52))))
@@ -263,26 +269,83 @@ public class SignUpForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void userName_textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userName_textActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userName_textActionPerformed
-
+    private boolean validate(String x){
+        if (!x.equals("")) {
+            try {
+                
+                Float.parseFloat(x);
+                
+                if(x.matches("(\\d*).?(\\d{1}||\\d{2})"))
+                    return true;
+                return true;
+            } catch (NumberFormatException nfe) {
+                return false;
+            }
+        }
+        return false;
+        
+    }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         //add a message for completions
         String name=name_text.getText().trim();
-        String userName=userName_text.getText().trim();
-        String id=id_text.getText().trim();
-        float len_thumb=Float.parseFloat(thumbLength.getText());
-        float width_thumb=Float.parseFloat(thumbWidth.getText());
-        float len_index=Float.parseFloat(indexLength.getText());
-        float width_index=Float.parseFloat(indexWidth.getText());
-        float len_middle=Float.parseFloat(middleLength.getText());
-        float width_middle=Float.parseFloat(middleWidth.getText());
-        float len_ring=Float.parseFloat(ringLength.getText());
-        float width_ring=Float.parseFloat(ringWidth.getText());
-        float len_little=Float.parseFloat(littleLength.getText());
-        float width_little=Float.parseFloat(LittleWidth.getText());
+        String user_id=id_text.getText().trim();
+        String len_thumb=thumbLength.getText().trim();
+        String width_thumb=(thumbWidth.getText().trim());
+        String len_index=(indexLength.getText().trim());
+        String width_index=(indexWidth.getText().trim());
+        String len_middle=(middleLength.getText().trim());
+        String width_middle=(middleWidth.getText().trim());
+        String len_ring=(ringLength.getText().trim());
+        String width_ring=(ringWidth.getText().trim());
+        String len_little=(littleLength.getText().trim());
+        String width_little=(littleWidth.getText().trim());
+        if(validate(len_thumb) && validate(width_thumb)){
+            len_thumbf=Float.parseFloat(len_thumb);
+            width_thumbf=Float.parseFloat(width_thumb);
+            if(validate(len_index) && validate(width_index)){
+                len_indexf=Float.parseFloat(len_index);
+                width_indexf=Float.parseFloat(width_index);
+                if(validate(len_middle) && validate(width_middle)){
+                    len_middlef=Float.parseFloat(len_middle);
+                    width_middlef=Float.parseFloat(width_middle);
+                    if(validate(len_ring) && validate(width_ring)){
+                        len_ringf=Float.parseFloat(len_ring);
+                        width_ringf=Float.parseFloat(width_ring);
+                        if(validate(len_little) && validate(width_little)){
+                            len_littlef=Float.parseFloat(len_little);
+                            width_littlef=Float.parseFloat(width_little);
+                
+                        }else{
+                            JOptionPane.showMessageDialog(null, "You have an error in Little Finger fields",
+                                "Information", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(null, "You have an error in RingFinger fields",
+                            "Information", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null, "You have an error in middleFinger fields",
+                        "Information", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "You have an error in indexFinger fields",
+                    "Information", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "You have an error in thumb fields",
+                    "Information", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+        
+        
+        
+        Thumb thumb=new Thumb(len_thumbf,width_thumbf);
+        IndexFinger index=new IndexFinger(len_indexf,width_indexf);
+        MiddleFinger middle=new MiddleFinger(len_middlef, width_middlef);
+        RingFinger ring=new RingFinger(len_ringf, width_ringf);
+        BabyFinger little=new BabyFinger(len_littlef, width_littlef);
+        AuthenticationController.createUser(middle, index, ring, little,thumb,name,user_id);
         new LoginForm().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -293,7 +356,7 @@ public class SignUpForm extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField LittleWidth;
+    private javax.swing.JFormattedTextField df;
     private javax.swing.JTextField id_text;
     private javax.swing.JTextField indexLength;
     private javax.swing.JTextField indexWidth;
@@ -306,13 +369,13 @@ public class SignUpForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField littleLength;
+    private javax.swing.JTextField littleWidth;
     private javax.swing.JTextField middleLength;
     private javax.swing.JTextField middleWidth;
     private javax.swing.JTextField name_text;
@@ -320,6 +383,5 @@ public class SignUpForm extends javax.swing.JFrame {
     private javax.swing.JTextField ringWidth;
     private javax.swing.JTextField thumbLength;
     private javax.swing.JTextField thumbWidth;
-    private javax.swing.JTextField userName_text;
     // End of variables declaration//GEN-END:variables
 }

@@ -15,6 +15,25 @@ import java.sql.Statement;
  */
 public class User {
     private static float threshold;
+    public static void setThreshold(float t){
+        threshold=t;
+    }
+    public static String checkForId(String id) {
+        Connection con=Connect.connectDb();
+        try{
+            stmt=con.createStatement();
+            ResultSet rs = stmt.executeQuery( "SELECT id FROM User where user_id="+id+";");
+            while(rs.next()){
+                return rs.getString("id");
+            }
+            
+        }catch(Exception e){
+            
+        }
+        return null;
+        
+            
+    }
     private String user_name;
     private String name;
     private String ID;
@@ -37,9 +56,8 @@ public class User {
         this.baby=baby;
         this.ring=ring;
     }
-    public static boolean checkForMatch(Thumb thumb,IndexFinger index,MiddleFinger middle,
+    public static boolean checkForMatch(String user_id,Thumb thumb,IndexFinger index,MiddleFinger middle,
         RingFinger ring,BabyFinger baby){
-        Connection con=Connect.connectDb();
         float[] handProperties=new float[10];
         handProperties[0]=thumb.getLength();
         handProperties[1]=thumb.getWidth();
@@ -51,67 +69,58 @@ public class User {
         handProperties[7]=ring.getWidth();
         handProperties[8]=baby.getLength();
         handProperties[9]=baby.getWidth();
+        Connection con=Connect.connectDb();
         try{
             stmt=con.createStatement();
-            ResultSet rs = stmt.executeQuery( "SELECT * FROM Hand;" );
-            int y=0;
-            while ( rs.next() ) {
-                float[] lengthAndWidth=new float[10];
+            ResultSet res = stmt.executeQuery( "SELECT * FROM Hand where user_id"
+                    + " = "+user_id+";" );
+            while (res.next()) {
+                
+                String[] lengthAndWidth=new String[10];
+                lengthAndWidth[0]=res.getString("thumb_length");
+                lengthAndWidth[1]=res.getString("thumb_width");
+                lengthAndWidth[2]=res.getString("index_length");
+                lengthAndWidth[3]=res.getString("index_width");
+                lengthAndWidth[4]=res.getString("middle_length");
+                lengthAndWidth[5]=res.getString("middle_width");
+                lengthAndWidth[6]=res.getString("ring_length");
+                lengthAndWidth[7]=res.getString("ring_width");
+                lengthAndWidth[8]=res.getString("baby_length");
+                lengthAndWidth[9]=res.getString("baby_width");
                 float[] convertedValues=new float[10];
-                float match;
-                lengthAndWidth[0]=rs.getFloat("thumb_length");
-                lengthAndWidth[1]=rs.getFloat("thumb_width");
-                lengthAndWidth[2]=rs.getFloat("index_length");
-                lengthAndWidth[3]=rs.getFloat("index_width");
-                lengthAndWidth[4]=rs.getFloat("middle_length");
-                lengthAndWidth[5]=rs.getFloat("middle_width");
-                lengthAndWidth[6]=rs.getFloat("ring_length");
-                lengthAndWidth[7]=rs.getFloat("ring_width");
-                lengthAndWidth[8]=rs.getFloat("baby_length");
-                lengthAndWidth[9]=rs.getFloat("baby_widths");
-                //reconvert to the actual data using cesar's method shift back by 2
-                for(float d:lengthAndWidth){
-                    String value=String.valueOf(d);
-                    int len=value.length();
-                    String[] splitedValue=value.split("");
-                    int decimalPlace=Integer.parseInt(splitedValue[len-1]);
-                    String decipheredVal="";
-                    int decimalIndex=value.length();
-                    for(int i=0;i<len-1;i++){
-                        if(i==decimalPlace){
-                            decipheredVal+=".";
-                        }
-                        int digit=Integer.parseInt(splitedValue[i]);
-                        int newDegit=digit-i-1;
-                        decipheredVal+=newDegit;                       
-                    }
-                    
-                    match=Float.parseFloat(decipheredVal);
-                    convertedValues[y]=match;
+                int y=0;
+                for(String s:lengthAndWidth){
+                    int lenString=s.length();
+                    int decimalPoint=Integer.parseInt(s.substring(lenString-7),2);
+                    int number=Integer.parseInt(s.substring(0,decimalPoint),2);
+                    int fraction=Integer.parseInt(s.substring(decimalPoint,lenString-7),2);
+                    float val=Float.parseFloat(number+"."+fraction);
+                    convertedValues[y]=val;
                     y++;
                 }
                 float cumulativeDifference=0;
-                for(float val:convertedValues){
+                for(int i=0;i<10;i++){
                     float difference=0;
-                    for(float valr:handProperties){
-                        difference=Math.abs(val-valr);
-                    }
+                    difference=Math.abs(convertedValues[i]-handProperties[i]);
                     cumulativeDifference+=difference*difference;
                 }
                 if(Math.sqrt(cumulativeDifference)<threshold){
                     return true;
                 }
+               
             }
         }catch(Exception e){
-            
+            System.out.println("Error when connecting to the databse");
         }
-        
         return false;
+       
     }
-    public void createUser(){
+    public void createUser(String id1,String name){
+        this.ID=id1;
+        this.name=name;
         Connection con=Connect.connectDb();
         float[] lengthAndWidth=new float[10];
-        float[] storedVal=new float[10];
+        String[] storedVal=new String[10];
         lengthAndWidth[0]=thumb.getLength();
         lengthAndWidth[1]=thumb.getWidth();
         lengthAndWidth[2]=index.getLength();
@@ -125,31 +134,25 @@ public class User {
         int j=0;
         for(float d:lengthAndWidth){
             String value=String.valueOf(d);
-            String[] splitedValue=value.split("");
+            String[] splitedValue=value.split("\\.");
+            int number=Integer.parseInt(splitedValue[0]);
+            int fraction=Integer.parseInt(splitedValue[1]);
+            String bNumber=Integer.toBinaryString(number);
+            String bFraction=Integer.toBinaryString(fraction);
+            int decimalPoint=bNumber.length();
+            String bDecimalPoint=Integer.toBinaryString(decimalPoint);
+            String decimalLength=("0000000"+bDecimalPoint).substring(bDecimalPoint.length());
             String cipheredChar="";
-            int i=1;
-            int decimalIndex=value.length();
-            for(String s:splitedValue){
-                if(s.equals('.')){
-                    decimalIndex=i-1;                   
-                    i++;
-                    continue;
-                }
-                int digit=Integer.parseInt(s);
-                int newDegit=digit+i;
-                cipheredChar+=newDegit;
-                i++;
-            }
-            cipheredChar+=decimalIndex;
-            storedVal[j]=Float.parseFloat(cipheredChar);
+            cipheredChar+=bNumber+bFraction+decimalLength;
+            storedVal[j]=cipheredChar;
             j++;
         }
         
         try {
             
             stmt=con.createStatement();
-            String sql = "INSERT INTO User (name,n_id)"
-                + "VALUES ("+name+","+ID+","+user_name+");";
+            String sql = "INSERT INTO User (name,user_id)"
+                + "VALUES ("+name+","+ID+");";
             stmt.executeUpdate(sql);
             ResultSet rs = stmt.executeQuery( "SELECT id FROM User where name="+name+" LIMIT 1;" );
             int id;
@@ -163,6 +166,7 @@ public class User {
             }
             rs.close();
         } catch (Exception e) {
+            System.out.println(e);
         }
         
         

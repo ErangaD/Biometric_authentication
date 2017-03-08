@@ -5,17 +5,36 @@
  */
 package views;
 
+import controller.AuthenticationController;
+import javax.swing.JOptionPane;
+import model.BabyFinger;
+import model.IndexFinger;
+import model.MiddleFinger;
+import model.RingFinger;
+import model.Thumb;
+import model.User;
+
 /**
  *
  * @author Eranga
  */
 public class LoginForm extends javax.swing.JFrame {
-
+    float len_thumbf;
+    float width_thumbf;
+    float len_indexf;
+    float width_indexf;
+    float len_middlef;
+    float width_middlef;
+    float len_ringf;
+    float width_ringf;
+    float len_littlef;
+    float width_littlef;
     /**
      * Creates new form LoginForm
      */
     public LoginForm() {
         initComponents();
+        User.setThreshold((float) 0.1);
     }
 
     /**
@@ -31,7 +50,7 @@ public class LoginForm extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        thumbLength = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -39,18 +58,18 @@ public class LoginForm extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        middleLength = new javax.swing.JTextField();
+        indexLength = new javax.swing.JTextField();
+        ringLength = new javax.swing.JTextField();
+        littleLength = new javax.swing.JTextField();
+        littleWidth = new javax.swing.JTextField();
+        ringWidth = new javax.swing.JTextField();
+        middleWidth = new javax.swing.JTextField();
+        indexWidth = new javax.swing.JTextField();
+        thumbWidth = new javax.swing.JTextField();
+        scan = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        id_text = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -111,16 +130,21 @@ public class LoginForm extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(51, 255, 51));
         jLabel9.setText("Width");
 
-        jTextField11.addActionListener(new java.awt.event.ActionListener() {
+        thumbWidth.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField11ActionPerformed(evt);
+                thumbWidthActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Submit");
+        scan.setText("Scan");
+        scan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                scanActionPerformed(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel10.setText("User Name");
+        jLabel10.setText("User Id");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -142,23 +166,23 @@ public class LoginForm extends javax.swing.JFrame {
                                     .addComponent(jLabel4))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField6))
+                                    .addComponent(ringLength, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                                    .addComponent(middleLength, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(indexLength, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(thumbLength, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(littleLength))
                                 .addGap(114, 114, 114)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(littleWidth, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                                        .addComponent(jTextField9, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jTextField10, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jTextField11, javax.swing.GroupLayout.Alignment.TRAILING))))
+                                        .addComponent(ringWidth, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+                                        .addComponent(middleWidth, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(indexWidth, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(thumbWidth, javax.swing.GroupLayout.Alignment.TRAILING))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel10)
                                 .addGap(55, 55, 55)
-                                .addComponent(jTextField2)))
+                                .addComponent(id_text)))
                         .addGap(32, 32, 32))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(231, 231, 231)
@@ -168,7 +192,7 @@ public class LoginForm extends javax.swing.JFrame {
                         .addGap(58, 58, 58))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(scan)
                         .addGap(152, 152, 152))))
         );
         layout.setVerticalGroup(
@@ -186,48 +210,124 @@ public class LoginForm extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(thumbLength, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(thumbWidth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(indexLength, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(indexWidth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(middleWidth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(middleLength, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ringLength, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ringWidth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(littleLength, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(littleWidth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(49, 49, 49)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(id_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)))
+                        .addComponent(scan)))
                 .addGap(19, 19, 19))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
+    private void thumbWidthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thumbWidthActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField11ActionPerformed
+    }//GEN-LAST:event_thumbWidthActionPerformed
 
+    private boolean validate(String x){
+        if (!x.equals("")) {
+            try {
+                
+                Float.parseFloat(x);
+                
+                if(x.matches("(\\d*).?(\\d{1}||\\d{2})"))
+                    return true;
+                return true;
+            } catch (NumberFormatException nfe) {
+                return false;
+            }
+        }
+        return false;
+        
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
             new SignUpForm().setVisible(true);
             this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void scanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scanActionPerformed
+
+        String user_id=id_text.getText().trim();
+        String len_thumb=thumbLength.getText().trim();
+        String width_thumb=(thumbWidth.getText().trim());
+        String len_index=(indexLength.getText().trim());
+        String width_index=(indexWidth.getText().trim());
+        String len_middle=(middleLength.getText().trim());
+        String width_middle=(middleWidth.getText().trim());
+        String len_ring=(ringLength.getText().trim());
+        String width_ring=(ringWidth.getText().trim());
+        String len_little=(littleLength.getText().trim());
+        String width_little=(littleWidth.getText().trim());
+        if(validate(len_thumb) && validate(width_thumb)){
+            len_thumbf=Float.parseFloat(len_thumb);
+            width_thumbf=Float.parseFloat(width_thumb);
+            if(validate(len_index) && validate(width_index)){
+                len_indexf=Float.parseFloat(len_index);
+                width_indexf=Float.parseFloat(width_index);
+                if(validate(len_middle) && validate(width_middle)){
+                    len_middlef=Float.parseFloat(len_middle);
+                    width_middlef=Float.parseFloat(width_middle);
+                    if(validate(len_ring) && validate(width_ring)){
+                        len_ringf=Float.parseFloat(len_ring);
+                        width_ringf=Float.parseFloat(width_ring);
+                        if(validate(len_little) && validate(width_little)){
+                            len_littlef=Float.parseFloat(len_little);
+                            width_littlef=Float.parseFloat(width_little);
+                
+                        }else{
+                            JOptionPane.showMessageDialog(null, "You have an error in Little Finger fields",
+                                "Information", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(null, "You have an error in RingFinger fields",
+                            "Information", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null, "You have an error in middleFinger fields",
+                        "Information", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "You have an error in indexFinger fields",
+                    "Information", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "You have an error in thumb fields",
+                    "Information", JOptionPane.INFORMATION_MESSAGE);
+        }
+        Thumb thumb=new Thumb(len_thumbf,width_thumbf);
+        IndexFinger index=new IndexFinger(len_indexf,width_indexf);
+        MiddleFinger middle=new MiddleFinger(len_middlef, width_middlef);
+        RingFinger ring=new RingFinger(len_ringf, width_ringf);
+        BabyFinger little=new BabyFinger(len_littlef, width_littlef);
+        AuthenticationController.authenticateUser(middle, index,
+                ring, little, thumb, user_id);
+        
+    }//GEN-LAST:event_scanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -265,8 +365,10 @@ public class LoginForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField id_text;
+    private javax.swing.JTextField indexLength;
+    private javax.swing.JTextField indexWidth;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -278,16 +380,14 @@ public class LoginForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField littleLength;
+    private javax.swing.JTextField littleWidth;
+    private javax.swing.JTextField middleLength;
+    private javax.swing.JTextField middleWidth;
+    private javax.swing.JTextField ringLength;
+    private javax.swing.JTextField ringWidth;
+    private javax.swing.JButton scan;
+    private javax.swing.JTextField thumbLength;
+    private javax.swing.JTextField thumbWidth;
     // End of variables declaration//GEN-END:variables
 }

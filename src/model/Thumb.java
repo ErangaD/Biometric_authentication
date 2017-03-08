@@ -10,5 +10,9 @@ package model;
  * @author Eranga
  */
 public class Thumb extends Finger {
-    
+    public Thumb(float len,float width){
+        super();
+        this.length=len;
+        this.width=width;
+    }
 }

@@ -19,26 +19,33 @@ import model.Thumb;
  */
 public class AuthenticationController {
     public static void createUser(MiddleFinger middle,IndexFinger index,RingFinger ring,
-            BabyFinger baby,Thumb thumb){
-        
-        if(User.checkForMatch(thumb, index, middle, ring, baby)){
-            JOptionPane.showMessageDialog(null, "You have already registered",
+            BabyFinger baby,Thumb thumb,String name,String id){
+        if(User.checkForId(id)==null){
+            if(User.checkForMatch(id,thumb, index, middle, ring, baby)){
+                JOptionPane.showMessageDialog(null, "You have already registered",
                     "Warning", JOptionPane.WARNING_MESSAGE);
-        }else{
-            User hand=new User();
-            hand.setFingers(thumb, index, middle, ring, baby);
-            hand.createUser();
+            }else{
+                User hand=new User();
+                hand.setFingers(thumb, index, middle, ring, baby);
+                hand.createUser(id,name);
+            }
         }
+        
         
     }
     public static void authenticateUser(MiddleFinger middle,IndexFinger index,RingFinger ring,
-            BabyFinger baby,Thumb thumb){
-        if(User.checkForMatch(thumb, index, middle, ring, baby)){
-            JOptionPane.showMessageDialog(null, "You have been authenticated",
-                    "Information", JOptionPane.INFORMATION_MESSAGE);
-        }else{
-            JOptionPane.showMessageDialog(null, "You are not allowed to access",
-                    "Warning", JOptionPane.WARNING_MESSAGE);
+            BabyFinger baby,Thumb thumb,String user_id){
+        String id=User.checkForId(user_id);
+        if(id!=null){
+            //Check there is a id match
+            if(User.checkForMatch(id,thumb, index, middle, ring, baby)){
+                JOptionPane.showMessageDialog(null, "You have been authenticated",
+                        "Information", JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(null, "You are not allowed to access",
+                        "Warning", JOptionPane.WARNING_MESSAGE);
+            }
         }
+        
     }
 }
