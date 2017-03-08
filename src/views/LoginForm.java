@@ -47,7 +47,7 @@ public class LoginForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        signUp = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         thumbLength = new javax.swing.JTextField();
@@ -74,17 +74,17 @@ public class LoginForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 0, 102));
-        jButton1.setText("SignUp");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        signUp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        signUp.setForeground(new java.awt.Color(255, 0, 102));
+        signUp.setText("SignUp");
+        signUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                signUpActionPerformed(evt);
             }
         });
 
-        jLabel1.setBackground(new java.awt.Color(0, 204, 255));
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 204, 204));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Login");
@@ -96,12 +96,12 @@ public class LoginForm extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1))
+                .addComponent(signUp))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(signUp, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -264,13 +264,13 @@ public class LoginForm extends javax.swing.JFrame {
         return false;
         
     }
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void signUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpActionPerformed
             new SignUpForm().setVisible(true);
             this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_signUpActionPerformed
 
     private void scanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scanActionPerformed
-
+        System.out.println("Scan pushed");
         String user_id=id_text.getText().trim();
         String len_thumb=thumbLength.getText().trim();
         String width_thumb=(thumbWidth.getText().trim());
@@ -368,7 +368,6 @@ public class LoginForm extends javax.swing.JFrame {
     private javax.swing.JTextField id_text;
     private javax.swing.JTextField indexLength;
     private javax.swing.JTextField indexWidth;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -387,6 +386,7 @@ public class LoginForm extends javax.swing.JFrame {
     private javax.swing.JTextField ringLength;
     private javax.swing.JTextField ringWidth;
     private javax.swing.JButton scan;
+    private javax.swing.JButton signUp;
     private javax.swing.JTextField thumbLength;
     private javax.swing.JTextField thumbWidth;
     // End of variables declaration//GEN-END:variables

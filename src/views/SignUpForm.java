@@ -71,7 +71,6 @@ public class SignUpForm extends javax.swing.JFrame {
         ringWidth = new javax.swing.JTextField();
         littleWidth = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
-        df = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -81,7 +80,7 @@ public class SignUpForm extends javax.swing.JFrame {
         jButton1.setText("Login");
 
         jLabel1.setBackground(new java.awt.Color(0, 204, 255));
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 204, 204));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("SignUp");
@@ -115,11 +114,11 @@ public class SignUpForm extends javax.swing.JFrame {
         id_text.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(51, 255, 51));
+        jLabel8.setForeground(new java.awt.Color(0, 51, 255));
         jLabel8.setText("Length");
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(51, 255, 51));
+        jLabel9.setForeground(new java.awt.Color(0, 51, 255));
         jLabel9.setText("Width");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -144,8 +143,6 @@ public class SignUpForm extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-
-        df.setText("jFormattedTextField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -204,14 +201,9 @@ public class SignUpForm extends javax.swing.JFrame {
                         .addComponent(jLabel9)
                         .addGap(73, 73, 73))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton2)
-                                .addGap(195, 195, 195))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(df, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(183, 183, 183))))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
+                        .addComponent(jButton2)
+                        .addGap(195, 195, 195))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,9 +223,7 @@ public class SignUpForm extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(id_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
-                        .addGap(20, 20, 20)
-                        .addComponent(df, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(51, 51, 51)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(jLabel9))
@@ -356,7 +346,6 @@ public class SignUpForm extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFormattedTextField df;
     private javax.swing.JTextField id_text;
     private javax.swing.JTextField indexLength;
     private javax.swing.JTextField indexWidth;
