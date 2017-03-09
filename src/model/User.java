@@ -92,9 +92,9 @@ public class User {
                 int y=0;
                 for(String s:lengthAndWidth){
                     int lenString=s.length();
-                    int decimalPoint=Integer.parseInt(s.substring(lenString-7),2);
+                    int decimalPoint=Integer.parseInt(s.substring(lenString-4),8);
                     int number=Integer.parseInt(s.substring(0,decimalPoint),2);
-                    int fraction=Integer.parseInt(s.substring(decimalPoint,lenString-7),2);
+                    int fraction=Integer.parseInt(s.substring(decimalPoint,lenString-4),16);
                     float val=Float.parseFloat(number+"."+fraction);
                     convertedValues[y]=val;
                     y++;
@@ -111,7 +111,7 @@ public class User {
                
             }
         }catch(Exception e){
-            System.out.println("Error when connecting to the databse");
+            System.out.println(e);
         }
         return false;
        
@@ -139,10 +139,10 @@ public class User {
             int number=Integer.parseInt(splitedValue[0]);
             int fraction=Integer.parseInt(splitedValue[1]);
             String bNumber=Integer.toBinaryString(number);
-            String bFraction=Integer.toBinaryString(fraction);
+            String bFraction=Integer.toHexString(fraction);
             int decimalPoint=bNumber.length();
-            String bDecimalPoint=Integer.toBinaryString(decimalPoint);
-            String decimalLength=("0000000"+bDecimalPoint).substring(bDecimalPoint.length());
+            String bDecimalPoint=Integer.toOctalString(decimalPoint);
+            String decimalLength=("0000"+bDecimalPoint).substring(bDecimalPoint.length());
             String cipheredChar="";
             cipheredChar+=bNumber+bFraction+decimalLength;
             storedVal[j]=cipheredChar;
@@ -158,10 +158,10 @@ public class User {
             int id;
             while (rs.next()) {
                 id = rs.getInt("id");
-                String sql1 = "INSERT INTO Hand VALUES ("+id+","+storedVal[0]+","+storedVal[1]
-                        +","+storedVal[2]+","+storedVal[3]+","+storedVal[4]
-                        +","+storedVal[5]+","+storedVal[6]+","+storedVal[7]
-                        +","+storedVal[8]+","+storedVal[9]+");";
+                String sql1 = "INSERT INTO Hand VALUES ("+id+",\'"+storedVal[0]+"\',\'"+storedVal[1]
+                        +"\',\'"+storedVal[2]+"\',\'"+storedVal[3]+"\',\'"+storedVal[4]
+                        +"\',\'"+storedVal[5]+"\',\'"+storedVal[6]+"\',\'"+storedVal[7]
+                        +"\',\'"+storedVal[8]+"\',\'"+storedVal[9]+"\');";
                 stmt.executeUpdate(sql1);
             }
             rs.close();

@@ -20,7 +20,7 @@ public class Connect {
     static {
         try{
             Class.forName("org.sqlite.JDBC");
-            conn=DriverManager.getConnection("jdbc:sqlite:biometrixAuth.sqlite");
+            conn=DriverManager.getConnection("jdbc:sqlite:database/BiometricAuthentication.sqlite");
             stmt = conn.createStatement();
             String sql1="CREATE TABLE IF NOT EXISTS \"Hand\" (\"user_id\" INTEGER NOT NULL , \"thumb_length\" VARCHAR, \"thumb_width\" VARCHAR, \"index_length\" VARCHAR, \"index_width\" VARCHAR, \"middle_length\" VARCHAR, \"middle_width\" VARCHAR, \"ring_length\" VARCHAR, "
                     + "\"ring_width\" VARCHAR, \"baby_length\" VARCHAR, \"baby_width\" VARCHAR)";
@@ -44,7 +44,7 @@ public class Connect {
     public static Connection connectDb(){
         try{
             Class.forName("org.sqlite.JDBC");
-            conn=DriverManager.getConnection("jdbc:sqlite:biometrixAuth.sqlite");
+            conn=DriverManager.getConnection("jdbc:sqlite:database/BiometricAuthentication.sqlite");
             
             return conn;
         }

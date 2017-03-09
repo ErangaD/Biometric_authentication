@@ -329,28 +329,28 @@ public class LoginForm extends javax.swing.JFrame {
                             proceed=true;
                         }else{
                             JOptionPane.showMessageDialog(null, "You have an error in Little Finger fields"
-                                    + "\n Value must not be greator than 100cm",
+                                    + "\n Values must not be greator than 100cm",
                                 "Information", JOptionPane.INFORMATION_MESSAGE);
                         }
                     }else{
-                        JOptionPane.showMessageDialog(null, "You have an error in RingFinger fields"
-                                + "\n Value must not be greator than 100cm",
+                        JOptionPane.showMessageDialog(null, "You have an error in Ring Finger fields"
+                                + "\n Values must not be greator than 100cm",
                             "Information", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }else{
-                    JOptionPane.showMessageDialog(null, "You have an error in middleFinger fields"
-                            + "\n Value must not be greator than 100cm",
+                    JOptionPane.showMessageDialog(null, "You have an error in middle Finger fields"
+                            + "\n Values must not be greator than 100cm",
                         "Information", JOptionPane.INFORMATION_MESSAGE);
                 }
             }else{
-                JOptionPane.showMessageDialog(null, "You have an error in indexFinger fields"
-                        + "\n Value must not be greator than 100cm",
+                JOptionPane.showMessageDialog(null, "You have an error in index Finger fields"
+                        + "\n Values must not be greator than 100cm",
                     "Information", JOptionPane.INFORMATION_MESSAGE);
             }
         }
         else{
             JOptionPane.showMessageDialog(null, "You have an error in thumb fields"
-                    + "\n Value must not be greator than 100cm",
+                    + "\n Values must not be greator than 100cm",
                     "Information", JOptionPane.INFORMATION_MESSAGE);
         }
         if(proceed){
