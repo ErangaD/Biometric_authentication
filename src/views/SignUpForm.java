@@ -6,6 +6,7 @@
 package views;
 
 import controller.AuthenticationController;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.BabyFinger;
 import model.IndexFinger;
@@ -34,6 +35,7 @@ public class SignUpForm extends javax.swing.JFrame {
     float width_littlef;
     public SignUpForm() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -115,11 +117,11 @@ public class SignUpForm extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 51, 255));
-        jLabel8.setText("Length");
+        jLabel8.setText("Length(cm)");
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 51, 255));
-        jLabel9.setText("Width");
+        jLabel9.setText("Width(cm)");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Thumb");
@@ -167,39 +169,40 @@ public class SignUpForm extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(184, 184, 184)
-                                            .addComponent(littleLength, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(ringLength, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(middleLength, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel10)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel7)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(indexLength, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel6)
-                                                .addGap(132, 132, 132)
-                                                .addComponent(thumbLength, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addComponent(jLabel11)
-                                        .addComponent(jLabel12)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(thumbWidth, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(indexWidth, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(middleWidth, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(ringWidth, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(littleWidth, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGap(184, 184, 184)
+                                                    .addComponent(littleLength, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(ringLength, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(middleLength, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel10)
+                                                .addComponent(jLabel11)
+                                                .addComponent(jLabel12)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(jLabel8)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                            .addComponent(jLabel7)
+                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                            .addComponent(indexLength, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                            .addComponent(jLabel6)
+                                                            .addGap(132, 132, 132)
+                                                            .addComponent(thumbLength, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(thumbWidth, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(indexWidth, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(middleWidth, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(ringWidth, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(littleWidth, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(jLabel9)))
                                 .addGap(60, 60, 60))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(226, 226, 226)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel9)
-                        .addGap(73, 73, 73))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
                         .addComponent(jButton2)
@@ -265,9 +268,17 @@ public class SignUpForm extends javax.swing.JFrame {
                 
                 Float.parseFloat(x);
                 
-                if(x.matches("(\\d*).?(\\d{1}||\\d{2})"))
+                if(x.matches("\\d*")){
+                    if(x.matches("(\\d{1}||\\d{2})")){
+                        return true;
+                    }
+                    return false;
+                }
+                else if(x.matches("(\\d{1}||\\d{2})(.?)((\\d{1}||\\d{2}||\\d{3}||\\d{4}))")){
                     return true;
-                return true;
+                }else{
+                    return false;
+                }
             } catch (NumberFormatException nfe) {
                 return false;
             }
@@ -277,6 +288,7 @@ public class SignUpForm extends javax.swing.JFrame {
     }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         //add a message for completions
+        boolean proceed=false;
         String name=name_text.getText().trim();
         String user_id=id_text.getText().trim();
         String len_thumb=thumbLength.getText().trim();
@@ -304,40 +316,46 @@ public class SignUpForm extends javax.swing.JFrame {
                         if(validate(len_little) && validate(width_little)){
                             len_littlef=Float.parseFloat(len_little);
                             width_littlef=Float.parseFloat(width_little);
-                
+                            proceed=true;
                         }else{
-                            JOptionPane.showMessageDialog(null, "You have an error in Little Finger fields",
+                            JOptionPane.showMessageDialog(null, "You have an error in Little Finger fields"
+                                    + "\n Value must not be greator than 100cm",
                                 "Information", JOptionPane.INFORMATION_MESSAGE);
                         }
                     }else{
-                        JOptionPane.showMessageDialog(null, "You have an error in RingFinger fields",
+                        JOptionPane.showMessageDialog(null, "You have an error in RingFinger fields"
+                                + "\n Value must not be greator than 100cm",
                             "Information", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }else{
-                    JOptionPane.showMessageDialog(null, "You have an error in middleFinger fields",
+                    JOptionPane.showMessageDialog(null, "You have an error in middleFinger fields"
+                            + "\n Value must not be greator than 100cm",
                         "Information", JOptionPane.INFORMATION_MESSAGE);
                 }
             }else{
-                JOptionPane.showMessageDialog(null, "You have an error in indexFinger fields",
+                JOptionPane.showMessageDialog(null, "You have an error in indexFinger fields"
+                        + "\n Value must not be greator than 100cm",
                     "Information", JOptionPane.INFORMATION_MESSAGE);
             }
         }
         else{
-            JOptionPane.showMessageDialog(null, "You have an error in thumb fields",
+            JOptionPane.showMessageDialog(null, "You have an error in thumb fields"
+                    + "\n Value must not be greator than 100cm",
                     "Information", JOptionPane.INFORMATION_MESSAGE);
         }
+        if(proceed){
+            Thumb thumb=new Thumb(len_thumbf,width_thumbf);
+            IndexFinger index=new IndexFinger(len_indexf,width_indexf);
+            MiddleFinger middle=new MiddleFinger(len_middlef, width_middlef);
+            RingFinger ring=new RingFinger(len_ringf, width_ringf);
+            BabyFinger little=new BabyFinger(len_littlef, width_littlef);
+            AuthenticationController.createUser(middle, index, ring, little,thumb,name,user_id);
+            JFrame form=new LoginForm();
+            form.setLocationRelativeTo(null);
+            form.setVisible(true);
+            this.dispose();
+        }
         
-        
-        
-        
-        Thumb thumb=new Thumb(len_thumbf,width_thumbf);
-        IndexFinger index=new IndexFinger(len_indexf,width_indexf);
-        MiddleFinger middle=new MiddleFinger(len_middlef, width_middlef);
-        RingFinger ring=new RingFinger(len_ringf, width_ringf);
-        BabyFinger little=new BabyFinger(len_littlef, width_littlef);
-        AuthenticationController.createUser(middle, index, ring, little,thumb,name,user_id);
-        new LoginForm().setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

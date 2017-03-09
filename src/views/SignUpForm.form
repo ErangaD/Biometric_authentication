@@ -46,50 +46,54 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" pref="184" max="-2" attributes="0"/>
-                                          <Component id="littleLength" min="-2" pref="63" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="ringLength" alignment="1" min="-2" pref="63" max="-2" attributes="0"/>
-                                      <Component id="middleLength" alignment="1" min="-2" pref="63" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="indexLength" min="-2" pref="63" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <EmptySpace min="-2" pref="184" max="-2" attributes="0"/>
+                                                  <Component id="littleLength" min="-2" pref="63" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="ringLength" alignment="1" min="-2" pref="63" max="-2" attributes="0"/>
+                                              <Component id="middleLength" alignment="1" min="-2" pref="63" max="-2" attributes="0"/>
                                           </Group>
-                                          <Group type="102" attributes="0">
-                                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
-                                              <Component id="thumbLength" min="-2" pref="63" max="-2" attributes="0"/>
+                                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                                  <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                      <Group type="102" attributes="0">
+                                                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace max="32767" attributes="0"/>
+                                                          <Component id="indexLength" min="-2" pref="63" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" attributes="0">
+                                                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
+                                                          <Component id="thumbLength" min="-2" pref="63" max="-2" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                              </Group>
                                           </Group>
                                       </Group>
-                                      <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="thumbWidth" alignment="1" min="-2" pref="63" max="-2" attributes="0"/>
+                                          <Component id="indexWidth" alignment="1" min="-2" pref="63" max="-2" attributes="0"/>
+                                          <Component id="middleWidth" alignment="1" min="-2" pref="63" max="-2" attributes="0"/>
+                                          <Component id="ringWidth" alignment="1" min="-2" pref="63" max="-2" attributes="0"/>
+                                          <Component id="littleWidth" alignment="1" min="-2" pref="63" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
-                              </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="thumbWidth" alignment="1" min="-2" pref="63" max="-2" attributes="0"/>
-                                  <Component id="indexWidth" alignment="1" min="-2" pref="63" max="-2" attributes="0"/>
-                                  <Component id="middleWidth" alignment="1" min="-2" pref="63" max="-2" attributes="0"/>
-                                  <Component id="ringWidth" alignment="1" min="-2" pref="63" max="-2" attributes="0"/>
-                                  <Component id="littleWidth" alignment="1" min="-2" pref="63" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="226" max="-2" attributes="0"/>
-                      <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace pref="215" max="32767" attributes="0"/>
@@ -261,7 +265,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="33" red="0" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Length"/>
+        <Property name="text" type="java.lang.String" value="Length(cm)"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
@@ -272,7 +276,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="33" red="0" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Width"/>
+        <Property name="text" type="java.lang.String" value="Width(cm)"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">

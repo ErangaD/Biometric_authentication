@@ -42,9 +42,15 @@ public class AuthenticationController {
                 JOptionPane.showMessageDialog(null, "You have been authenticated",
                         "Information", JOptionPane.INFORMATION_MESSAGE);
             }else{
-                JOptionPane.showMessageDialog(null, "You are not allowed to access",
+                JOptionPane.showMessageDialog(null, "You are not allowed to access \n"
+                        + "Your hand measurements do not comply",
                         "Warning", JOptionPane.WARNING_MESSAGE);
             }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "You have not been registerd in the system \n"
+                    + "Please Sign up",
+                        "Information", JOptionPane.INFORMATION_MESSAGE);
         }
         
     }

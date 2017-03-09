@@ -25,13 +25,13 @@ public class Connect {
             String sql1="CREATE TABLE IF NOT EXISTS \"Hand\" (\"user_id\" INTEGER NOT NULL , \"thumb_length\" VARCHAR, \"thumb_width\" VARCHAR, \"index_length\" VARCHAR, \"index_width\" VARCHAR, \"middle_length\" VARCHAR, \"middle_width\" VARCHAR, \"ring_length\" VARCHAR, "
                     + "\"ring_width\" VARCHAR, \"baby_length\" VARCHAR, \"baby_width\" VARCHAR)";
             stmt.executeUpdate(sql1);
-            String sql2="CREATE TABLE IF NOT EXISTS \"User\" (\"id\" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL ,"
-                    + " \"name\" CHAR NOT NULL , \"user_id\" CHAR NOT NULL )";
+            String sql2="CREATE TABLE IF NOT EXISTS \"User\" (\"id\" INTEGER PRIMARY KEY  AUTOINCREMENT  "
+                    + "NOT NULL  UNIQUE , \"name\" VARCHAR, \"user_id\" VARCHAR)";
             stmt.executeUpdate(sql2);
             stmt.close();
         }
         catch(Exception e){
-            System.out.println(e);
+            System.out.println(e + "In the static method");
         }finally{
             try {
                 if(conn!=null)

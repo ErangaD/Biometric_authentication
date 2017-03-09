@@ -8,6 +8,7 @@ package model;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,7 +23,7 @@ public class User {
         Connection con=Connect.connectDb();
         try{
             stmt=con.createStatement();
-            ResultSet rs = stmt.executeQuery( "SELECT id FROM User where user_id="+id+";");
+            ResultSet rs = stmt.executeQuery( "SELECT id FROM User where user_id=\'"+id+"\';");
             while(rs.next()){
                 return rs.getString("id");
             }
@@ -73,7 +74,7 @@ public class User {
         try{
             stmt=con.createStatement();
             ResultSet res = stmt.executeQuery( "SELECT * FROM Hand where user_id"
-                    + " = "+user_id+";" );
+                    + " = \'"+user_id+"\';" );
             while (res.next()) {
                 
                 String[] lengthAndWidth=new String[10];
@@ -151,10 +152,9 @@ public class User {
         try {
             
             stmt=con.createStatement();
-            String sql = "INSERT INTO User (name,user_id)"
-                + "VALUES ("+name+","+ID+");";
+            String sql = "INSERT INTO User(name,user_id) VALUES (\'"+ name +"\',\'"+ID+"\');";
             stmt.executeUpdate(sql);
-            ResultSet rs = stmt.executeQuery( "SELECT id FROM User where name="+name+" LIMIT 1;" );
+            ResultSet rs = stmt.executeQuery( "SELECT id FROM User where name=\'"+name+"\' LIMIT 1;" );
             int id;
             while (rs.next()) {
                 id = rs.getInt("id");
@@ -165,6 +165,9 @@ public class User {
                 stmt.executeUpdate(sql1);
             }
             rs.close();
+            con.close();
+            JOptionPane.showMessageDialog(null, "You have successfully registered",
+                        "Information", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             System.out.println(e);
         }
